@@ -1,0 +1,47 @@
+version: '3.4'
+
+networks:
+  itemcatalogservice.grpcservice-net:
+    driver: bridge
+
+services:
+  itemcatalogservice.grpcservice:
+    image: ${DOCKER_REGISTRY-}itemcatalogservicegrpcservice
+    depends_on:
+        - "db"
+    build:
+      context: .
+      dockerfile: ItemCatalogService.gRPCService/Dockerfile
+    env_file:
+      - database.env
+    networks:
+        - itemcatalogservice.grpcservice-net
+
+  db:
+    image: postgres:13.0-alpine
+    ports:
+        - "5432:5432" 
+    env_file:
+      - database.env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    networks:
+      - itemcatalogservice.grpcservice-net
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    env_file:
+      - database.env
+    ports:
+       - "8080:80"
+    volumes:
+       - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - itemcatalogservice.grpcservice-net
+
+volumes:
+  database-data:
+  pgadmin-data:
+        
