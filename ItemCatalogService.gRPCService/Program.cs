@@ -10,6 +10,7 @@ namespace ItemCatalogService.gRPCService
 
         public static void Main(string[] args)
         {
+            //MigrateDatabase creates DB when no DB exists
             CreateHostBuilder(args).Build().MigrateDatabase<ItemContext>().Run();
         }
 
