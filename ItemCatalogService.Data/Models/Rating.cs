@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ItemCatalogService
+namespace ItemCatalogService.Data
 {
     public class Rating
     {

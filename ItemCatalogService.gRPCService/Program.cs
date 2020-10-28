@@ -1,7 +1,7 @@
-using ItemCatalogService.Data.DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using ItemCatalogService.gRPCService.Extensions;
+using ItemCatalogService.Data.DataAccess;
 
 namespace ItemCatalogService.gRPCService
 {

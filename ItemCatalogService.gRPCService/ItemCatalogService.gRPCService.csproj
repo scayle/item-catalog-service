@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ItemCatalogService\ItemCatalogService.Data.csproj" />
+    <ProjectReference Include="..\ItemCatalogService.Data\ItemCatalogService.Data.csproj" />
   </ItemGroup>
 
 </Project>
