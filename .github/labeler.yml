@@ -9,4 +9,4 @@ DataModel:
 DataAccess:
   - ItemCatalogService.Data/DataAcces/*
 Docker:
-  - any: ['./*docker*', './database.env', 'ItemCatalogService.gRPCService/Dockerfile']
+  - any: ["./*docker*", "./database.env", "ItemCatalogService.gRPCService/Dockerfile"]
