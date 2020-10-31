@@ -9,18 +9,7 @@ name: Labeler
 on: [pull_request]
 
 jobs:
-  label:
-    repo:
-      - ./*
-    Data:
-      - ./ItemCatalogService.Data
-    gRPCService:
-      - ./ItemCatalogService.gRPCService
-    DataModel:
-      - ./ItemCatalogService.Data/Models
-    DataAccess:
-      - ./ItemCatalogService.Data/DataAccess
-    
+  label:  
 
     runs-on: ubuntu-latest
 
