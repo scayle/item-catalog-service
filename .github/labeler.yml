@@ -1,10 +1,10 @@
 repo:
   - ./*
 Data:
-  - ./ItemCatalogService.Data
+  - ItemCatalogService.Data/*
 gRPCService:
-  - ./ItemCatalogService.gRPCService
+  - ItemCatalogService.gRPCService/*
 DataModel:
-  - ./ItemCatalogService.Data/Models
+  - ItemCatalogService.Data/Models/*
 DataAccess:
-  - ./ItemCatalogService.Data/DataAccess
+  - ItemCatalogService.Data/DataAcces/*
