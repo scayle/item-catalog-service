@@ -16,7 +16,7 @@ namespace ItemCatalogService.gRPCService.Extensions
                 try
                 {
                     var db = services.GetRequiredService<T>();
-                    db.Database.EnsureCreated();
+                    db.Database.Migrate();
                 }
                 catch (Exception ex)
                 {
