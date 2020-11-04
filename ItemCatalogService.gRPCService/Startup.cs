@@ -28,7 +28,7 @@ namespace ItemCatalogService.gRPCService
         {
             services.AddGrpc();
 
-            services.AddDbContext<ItemContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:DevConnectionPlSql"]));
+            services.AddDbContext<ItemContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DevConnectionPgSql")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
