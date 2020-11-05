@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GeneratedProtoClasses" Version="0.2.1" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.32.0-pre1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0-rc.2.20475.6">
       <PrivateAssets>all</PrivateAssets>

@@ -11,7 +11,7 @@ namespace ItemCatalogService.Data
 
         [MaxLength(200)]
         [Required]
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public decimal BuyPrice { get; set; }
 
@@ -22,7 +22,7 @@ namespace ItemCatalogService.Data
 
         public int StockQuantity { get; set; }
 
-        public int Description { get; set; }
+        public string Description { get; set; }
 
         public decimal Discount { get; set; }
 
