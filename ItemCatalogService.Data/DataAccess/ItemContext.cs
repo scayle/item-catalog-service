@@ -7,7 +7,7 @@ namespace ItemCatalogService.Data.DataAccess
 {
     public class ItemContext : DbContext
     {
-        public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Adress> Addresses { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<ContactPerson> ContactPeople { get; set; }
         public DbSet<EMail> EMails { get; set; }

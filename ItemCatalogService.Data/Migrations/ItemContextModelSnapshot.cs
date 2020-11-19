@@ -57,7 +57,7 @@ namespace ItemCatalogService.Data.Migrations
 
                     b.HasIndex("SellerCompanyId");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("ItemCatalogService.Data.Answer", b =>

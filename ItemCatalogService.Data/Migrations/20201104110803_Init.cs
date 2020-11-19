@@ -96,7 +96,7 @@ namespace ItemCatalogService.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adresses",
+                name: "Addresses",
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uuid", nullable: false),
@@ -206,12 +206,12 @@ namespace ItemCatalogService.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Adresses_ContactPersonId",
-                table: "Adresses",
+                table: "Addresses",
                 column: "ContactPersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Adresses_SellerCompanyId",
-                table: "Adresses",
+                table: "Addresses",
                 column: "SellerCompanyId");
 
             migrationBuilder.CreateIndex(
@@ -263,7 +263,7 @@ namespace ItemCatalogService.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Adresses");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Answers");

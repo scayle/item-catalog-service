@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ItemCatalogService.gRPCService.Repository;
 
 namespace ItemCatalogService.gRPCService
 {
@@ -30,6 +31,7 @@ namespace ItemCatalogService.gRPCService
             services.AddGrpc();
 
             services.AddDbContext<ItemContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DevConnectionPgSql")));
+            services.AddTransient<IItemRepository, ItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
