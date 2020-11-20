@@ -1,4 +1,5 @@
 ﻿using ItemCatalogService.Data.DataAccess;
+using ItemCatalogService.gRPCService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ItemCatalogService.gRPCService.Repository;
 
 namespace ItemCatalogService.gRPCService
 {
@@ -29,6 +31,7 @@ namespace ItemCatalogService.gRPCService
             services.AddGrpc();
 
             services.AddDbContext<ItemContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DevConnectionPgSql")));
+            services.AddTransient<IItemRepository, ItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +47,7 @@ namespace ItemCatalogService.gRPCService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<ItemService>();
 
                 endpoints.MapGet("/", async context =>
                 {

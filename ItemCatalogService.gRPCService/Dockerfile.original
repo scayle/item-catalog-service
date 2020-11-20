@@ -8,7 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["ItemCatalogService.gRPCService/ItemCatalogService.gRPCService.csproj", "ItemCatalogService.gRPCService/"]
-COPY ["ItemCatalogService.Data/ItemCatalogService.Data.csproj", "ItemCatalogService.Data/"]
 RUN dotnet restore "ItemCatalogService.gRPCService/ItemCatalogService.gRPCService.csproj"
 COPY . .
 WORKDIR "/src/ItemCatalogService.gRPCService"

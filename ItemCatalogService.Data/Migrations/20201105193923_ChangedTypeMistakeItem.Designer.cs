@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ItemCatalogService.Data.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    [Migration("20201104110803_Init")]
-    partial class Init
+    [Migration("20201105193923_ChangedTypeMistakeItem")]
+    partial class ChangedTypeMistakeItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace ItemCatalogService.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
 
-            modelBuilder.Entity("ItemCatalogService.Adress", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Adress", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Answer", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Answer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.ContactPerson", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.ContactPerson", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("ContactPeople");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.EMail", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.EMail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("EMails");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Item", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -146,15 +146,16 @@ namespace ItemCatalogService.Data.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("Description")
-                        .HasColumnType("integer");
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Discount")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("integer");
+                        .HasColumnType("character varying(200)");
 
                     b.Property<decimal>("SellPrice")
                         .HasColumnType("numeric");
@@ -172,7 +173,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Question", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Question", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,7 +198,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Rating", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Rating", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -229,7 +230,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.SellerCompany", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.SellerCompany", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,7 +246,7 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("SellerCompanies");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.User", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -261,101 +262,101 @@ namespace ItemCatalogService.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Adress", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Adress", b =>
                 {
-                    b.HasOne("ItemCatalogService.ContactPerson", null)
+                    b.HasOne("ItemCatalogService.Data.ContactPerson", null)
                         .WithMany("WorkLocationAdresses")
                         .HasForeignKey("ContactPersonId");
 
-                    b.HasOne("ItemCatalogService.SellerCompany", null)
+                    b.HasOne("ItemCatalogService.Data.SellerCompany", null)
                         .WithMany("LocationAdresses")
                         .HasForeignKey("SellerCompanyId");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Answer", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Answer", b =>
                 {
-                    b.HasOne("ItemCatalogService.User", "User")
+                    b.HasOne("ItemCatalogService.Data.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.ContactPerson", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.ContactPerson", b =>
                 {
-                    b.HasOne("ItemCatalogService.SellerCompany", null)
+                    b.HasOne("ItemCatalogService.Data.SellerCompany", null)
                         .WithMany("Contacts")
                         .HasForeignKey("SellerCompanyId");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.EMail", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.EMail", b =>
                 {
-                    b.HasOne("ItemCatalogService.ContactPerson", null)
+                    b.HasOne("ItemCatalogService.Data.ContactPerson", null)
                         .WithMany("EMails")
                         .HasForeignKey("ContactPersonId");
 
-                    b.HasOne("ItemCatalogService.User", null)
+                    b.HasOne("ItemCatalogService.Data.User", null)
                         .WithMany("EMails")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Item", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Item", b =>
                 {
-                    b.HasOne("ItemCatalogService.SellerCompany", "SellerCompany")
+                    b.HasOne("ItemCatalogService.Data.SellerCompany", "SellerCompany")
                         .WithMany()
                         .HasForeignKey("SellerCompanyId");
 
                     b.Navigation("SellerCompany");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Question", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Question", b =>
                 {
-                    b.HasOne("ItemCatalogService.Item", null)
+                    b.HasOne("ItemCatalogService.Data.Item", null)
                         .WithMany("Questions")
                         .HasForeignKey("ItemId");
 
-                    b.HasOne("ItemCatalogService.User", "User")
+                    b.HasOne("ItemCatalogService.Data.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Rating", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Rating", b =>
                 {
-                    b.HasOne("ItemCatalogService.Item", null)
+                    b.HasOne("ItemCatalogService.Data.Item", null)
                         .WithMany("Ratings")
                         .HasForeignKey("ItemId");
 
-                    b.HasOne("ItemCatalogService.User", "User")
+                    b.HasOne("ItemCatalogService.Data.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.ContactPerson", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.ContactPerson", b =>
                 {
                     b.Navigation("EMails");
 
                     b.Navigation("WorkLocationAdresses");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.Item", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.Item", b =>
                 {
                     b.Navigation("Questions");
 
                     b.Navigation("Ratings");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.SellerCompany", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.SellerCompany", b =>
                 {
                     b.Navigation("Contacts");
 
                     b.Navigation("LocationAdresses");
                 });
 
-            modelBuilder.Entity("ItemCatalogService.User", b =>
+            modelBuilder.Entity("ItemCatalogService.Data.User", b =>
                 {
                     b.Navigation("EMails");
                 });
